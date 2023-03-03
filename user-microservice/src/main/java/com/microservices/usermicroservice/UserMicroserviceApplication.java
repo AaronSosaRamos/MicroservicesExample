@@ -7,6 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
 @SpringBootApplication
+@EnableDiscoveryClient
 public class UserMicroserviceApplication {
 
 	public static void main(String[] args) {
