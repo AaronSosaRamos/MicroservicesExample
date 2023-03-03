@@ -2,6 +2,12 @@ server:
   port: 8003
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
+    registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  waitTimeInMsWhenSyncEmpty: 0
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
