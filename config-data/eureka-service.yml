@@ -6,4 +6,4 @@ eureka:
     hostname: localhost
   client:
     registerWithEureka: false
-    fetchRegistry: false
+    fetchRegistry: true
