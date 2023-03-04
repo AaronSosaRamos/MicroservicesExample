@@ -9,4 +9,4 @@ eureka:
     initial-instance-info-replication-interval-seconds: 5
     register-with-eureka: true
     fetch-registry: true
-    wait-time-in-ms-when-sync-empty: 8000
+    wait-time-in-ms-when-sync-empty: 15000
