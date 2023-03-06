@@ -4,5 +4,6 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    instance:
-      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${server.port}
