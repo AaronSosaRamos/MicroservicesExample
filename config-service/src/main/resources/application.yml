@@ -11,6 +11,3 @@ spring:
           default-label: multiple-instances
           uri: https://github.com/AaronSosaRamos/MicroservicesExample
           search-paths: config-data
-          username: U20204320@gmail.com
-          password: aArsaso_on273
-          clone-on-start: true
