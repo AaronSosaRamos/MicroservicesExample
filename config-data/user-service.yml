@@ -6,4 +6,4 @@ eureka:
     fetch-registry: true
   instance:
     hostname: localhost
-    instance-id: ${eureka.instance.hostname}:${server.port}
+    instance-id: ${spring.application.name}:${random.value}
