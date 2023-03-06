@@ -6,8 +6,6 @@ spring:
       enabled: true
       uri: http://localhost:8081
       fail-fast: false
-    bootstrap:
-      enabled: true
 eureka:
   client:
     service-url:
