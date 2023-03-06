@@ -1,14 +1,18 @@
 spring:
   application:
     name: user-service
+    instance_id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    
   cloud:
     config:
       enabled: true
       uri: http://localhost:8081
       fail-fast: false
+      
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    instance:
-      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+    metadata-map:
+      instanceId: ${eureka.instance.instance-id}
