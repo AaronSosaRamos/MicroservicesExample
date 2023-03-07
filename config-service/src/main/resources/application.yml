@@ -8,6 +8,6 @@ spring:
     config:
       server:
         git:
-          default-label: multiple-instances
+          default-label: gateway
           uri: https://github.com/AaronSosaRamos/MicroservicesExample
           search-paths: config-data

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+      fail-fast: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
