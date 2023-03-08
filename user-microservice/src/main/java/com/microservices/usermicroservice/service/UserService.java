@@ -8,15 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import com.microservices.usermicroservice.feignclients.IStudentFeignClient;
 import com.microservices.usermicroservice.feignclients.ITeacherFeignClient;
 
 @Service
 public class UserService implements IUserService{
-    
-    @Autowired
-    private RestTemplate restTemplate; 
     
     @Autowired
     private IUserRepository userRepository;
@@ -26,51 +22,44 @@ public class UserService implements IUserService{
     
     @Autowired
     private ITeacherFeignClient teacherFeignClient;
-    
-    //RestTemplate
-    
+        
     @Override
-    public Teacher getTeacher(String dni) {
-        Teacher teacher = restTemplate.getForObject("http://localhost:8003/teacher/findByDni?teacherDni={teacherDni}", Teacher.class, dni);
-        return teacher;
+    public Teacher getTeacherByDni(String dni) {
+        return teacherFeignClient.findByDni(dni);
     }
 
     @Override
-    public Student getStudent(String dni) {
-        Student student = restTemplate.getForObject("http://localhost:8002/student/findByDni?studentDni={studentDni}", Student.class, dni);
-        return student;
+    public Student getStudentByDni(String dni) {
+        return studentFeignClient.findByDni(dni);
     }
     
     @Override
     public List<Teacher> findTeachersByEspecialidad(String especialidad) {
-        List<Teacher> teachers = restTemplate.getForObject("http://localhost:8003/teacher/listByEspecialidad?especialidad={especialidad}", List.class, especialidad);
-        return teachers;
+        return teacherFeignClient.listByEspecialidad(especialidad);
     }
 
     @Override
     public List<Student> findStudentsByFullName(String fullName) {
-        List<Student> students = restTemplate.getForObject("http://localhost:8002/student/listByFullName?fullName={fullName}", List.class, fullName);
-        return students;
+        return studentFeignClient.listByFullName(fullName);
     }
     
-    //FeignClient
     @Override
-    public Student saveStudentFC(Student student) {
+    public Student saveStudent(Student student) {
         return studentFeignClient.save(student);
     }
 
     @Override
-    public void deleteStudentFC(int studentId) {
+    public void deleteStudent(int studentId) {
         studentFeignClient.delete(studentId);
     }
     
     @Override
-    public Teacher saveTeacherFC(Teacher teacher) {
+    public Teacher saveTeacher(Teacher teacher) {
         return teacherFeignClient.save(teacher);
     }
 
     @Override
-    public void deleteTeacherFC(int teacherId) {
+    public void deleteTeacher(int teacherId) {
         teacherFeignClient.delete(teacherId);
     }
 
@@ -93,6 +82,26 @@ public class UserService implements IUserService{
     @Override
     public void delete(int userId) {
         userRepository.delete(this.findById(userId));
+    }
+
+    @Override
+    public List<Teacher> listTeachers() {
+        return teacherFeignClient.list();
+    }
+
+    @Override
+    public List<Student> listStudents() {
+        return studentFeignClient.list();
+    }
+
+    @Override
+    public Teacher getTeacherById(int teacherId) {
+        return teacherFeignClient.findTeacher(teacherId);
+    }
+
+    @Override
+    public Student getStudentById(int studentId) {
+        return studentFeignClient.findStudent(studentId);
     }
     
 }

@@ -61,8 +61,28 @@ public class UserController {
     }
     
     @GetMapping("/student")
+    public ResponseEntity<List<Student>> listStudents(){
+        List<Student> studentList = userService.listStudents();
+        if(studentList==null){
+            return ResponseEntity.notFound().build();
+        }
+        
+        return ResponseEntity.ok(studentList);
+    }
+    
+    @GetMapping("/student/findById")
+    public ResponseEntity<Student> getStudentById(@RequestParam(name="studentId",defaultValue="0") int studentId){
+        Student student = userService.getStudentById(studentId);
+        if(student==null){
+            return ResponseEntity.notFound().build();
+        }
+        
+        return ResponseEntity.ok(student);
+    }
+    
+    @GetMapping("/student/findByDni")
     public ResponseEntity<Student> getStudent(@RequestParam(name="dni",defaultValue="0") String dni){
-        Student student = userService.getStudent(dni);
+        Student student = userService.getStudentByDni(dni);
         if(student==null){
             return ResponseEntity.notFound().build();
         }
@@ -82,19 +102,39 @@ public class UserController {
     
     @PostMapping("/student/save")
     public ResponseEntity<Student> saveStudent(@RequestBody Student student){
-        Student newStudent = userService.saveStudentFC(student);
+        Student newStudent = userService.saveStudent(student);
         return ResponseEntity.ok(newStudent);
     }
     
     @DeleteMapping("student/delete")
     public ResponseEntity<String> deleteStudent(@RequestParam(name="studentId",defaultValue="0") int studentId){
-        userService.deleteStudentFC(studentId);
+        userService.deleteStudent(studentId);
         return ResponseEntity.ok("Se ha eliminado al estudiante satisfactoriamente");
     }
     
     @GetMapping("/teacher")
+    public ResponseEntity<List<Teacher>> listTeachers(){
+        List<Teacher> teacherList = userService.listTeachers();
+        if(teacherList==null){
+            return ResponseEntity.notFound().build();
+        }
+        
+        return ResponseEntity.ok(teacherList);
+    }
+    
+    @GetMapping("/teacher/findById")
+    public ResponseEntity<Teacher> getTeacherById(@RequestParam(name="teacherId",defaultValue="0") int teacherId){
+        Teacher teacher = userService.getTeacherById(teacherId);
+        if(teacher==null){
+            return ResponseEntity.notFound().build();
+        }
+        
+        return ResponseEntity.ok(teacher);
+    }
+    
+    @GetMapping("/teacher/findByDni")
     public ResponseEntity<Teacher> getTeacher(@RequestParam(name="dni",defaultValue="0") String dni){
-        Teacher teacher = userService.getTeacher(dni);
+        Teacher teacher = userService.getTeacherByDni(dni);
         if(teacher==null){
             return ResponseEntity.notFound().build();
         }
@@ -114,13 +154,13 @@ public class UserController {
     
     @PostMapping("/teacher/save")
     public ResponseEntity<Teacher> saveTeacher(@RequestBody Teacher teacher){
-        Teacher newTeacher = userService.saveTeacherFC(teacher);
+        Teacher newTeacher = userService.saveTeacher(teacher);
         return ResponseEntity.ok(newTeacher);
     }
     
     @DeleteMapping("teacher/delete")
     public ResponseEntity<String> deleteTeacher(@RequestParam(name="teacherId",defaultValue="0") int teacherId){
-        userService.deleteTeacherFC(teacherId);
+        userService.deleteTeacher(teacherId);
         return ResponseEntity.ok("Se ha eliminado al docente satisfactoriamente");
     }
 }

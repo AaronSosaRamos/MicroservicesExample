@@ -12,17 +12,21 @@ public interface IUserService {
     public Users save(Users user);
     public void delete(int userId);
     
-    //RestTemplate
-    public Teacher getTeacher(String dni);
-    public Student getStudent(String dni);
+    public List<Teacher> listTeachers();
+    public List<Student> listStudents();
+    
+    public Teacher getTeacherById(int teacherId);
+    public Student getStudentById(int studentId);
+    
+    public Teacher getTeacherByDni(String dni);
+    public Student getStudentByDni(String dni);
 
     public List<Teacher> findTeachersByEspecialidad(String especialidad);
     public List<Student> findStudentsByFullName(String fullName);
     
-    //FeignClient
-    public Student saveStudentFC (Student student);
-    public void deleteStudentFC (int studentId); 
+    public Student saveStudent (Student student);
+    public void deleteStudent (int studentId); 
     
-    public Teacher saveTeacherFC (Teacher teacher);
-    public void deleteTeacherFC (int teacherId);
+    public Teacher saveTeacher (Teacher teacher);
+    public void deleteTeacher (int teacherId);
 }
