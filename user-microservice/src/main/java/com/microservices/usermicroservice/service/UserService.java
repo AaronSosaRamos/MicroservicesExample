@@ -31,25 +31,25 @@ public class UserService implements IUserService{
     
     @Override
     public Teacher getTeacher(String dni) {
-        Teacher teacher = restTemplate.getForObject("http://localhost:8003/teacher/findByDni?teacherDni={teacherDni}", Teacher.class, dni);
+        Teacher teacher = restTemplate.getForObject("http://teacher-service/teacher/findByDni?teacherDni={teacherDni}", Teacher.class, dni);
         return teacher;
     }
 
     @Override
     public Student getStudent(String dni) {
-        Student student = restTemplate.getForObject("http://localhost:8002/student/findByDni?studentDni={studentDni}", Student.class, dni);
+        Student student = restTemplate.getForObject("http://student-service/student/findByDni?studentDni={studentDni}", Student.class, dni);
         return student;
     }
     
     @Override
     public List<Teacher> findTeachersByEspecialidad(String especialidad) {
-        List<Teacher> teachers = restTemplate.getForObject("http://localhost:8003/teacher/listByEspecialidad?especialidad={especialidad}", List.class, especialidad);
+        List<Teacher> teachers = restTemplate.getForObject("http://teacher-service/teacher/listByEspecialidad?especialidad={especialidad}", List.class, especialidad);
         return teachers;
     }
 
     @Override
     public List<Student> findStudentsByFullName(String fullName) {
-        List<Student> students = restTemplate.getForObject("http://localhost:8002/student/listByFullName?fullName={fullName}", List.class, fullName);
+        List<Student> students = restTemplate.getForObject("http://student-service/student/listByFullName?fullName={fullName}", List.class, fullName);
         return students;
     }
     
