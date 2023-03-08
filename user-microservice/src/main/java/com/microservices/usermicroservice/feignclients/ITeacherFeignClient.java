@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "teacher-service", url="http://localhost:8003", path="/teacher")
+@FeignClient(name = "teacher-service", path="/teacher")
 public interface ITeacherFeignClient {
     
     @PostMapping("/save")
