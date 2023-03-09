@@ -29,6 +29,7 @@ resilience4j.circuitbreaker:
             failureRateThreshold: 50
             eventConsumerBufferSize: 10
             
-spring:
-  application:
-    zipkin: http://localhost:9411
+management:
+    tracing:
+        sampling:
+            probability: 1.0
