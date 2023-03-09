@@ -8,6 +8,6 @@ spring:
     config:
       server:
         git:
-          default-label: circuit-breaker
+          default-label: zipkin-micrometer
           uri: https://github.com/AaronSosaRamos/MicroservicesExample
           search-paths: config-data
